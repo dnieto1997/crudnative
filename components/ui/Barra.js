@@ -11,7 +11,7 @@ const BarraSuperior = ({navigation,route}) => {
 
   return (
 
-    <Button textColor='#FFF' icon="Plus-circle" onPress={()=>handlePress() }>
+    <Button textColor='#FFF' icon="plus-circle"  onPress={()=>handlePress() }>
       Nuevo Cliente
     </Button>
   )

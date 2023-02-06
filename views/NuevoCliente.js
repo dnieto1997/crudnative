@@ -1,11 +1,18 @@
 import React from 'react'
-import { Text,View,SafeAreaView,StyleSheet } from 'react-native'
+import { Text,View,SafeAreaView,StyleSheet} from 'react-native'
+import {TextInput,Headline,Button} from 'react-native-paper'
+import globalStyle from '../styles/global'
+
 
 const NuevoCliente = () => {
   return (
-    <Text>
-      Desde nuevo cliente
-    </Text>
+    <View>
+      <Headline style={globalStyle.titulo} >
+        Añadir nuevo cliente
+      </Headline>
+
+
+    </View>
   )
 }
 
