@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text,View,SafeAreaView,StyleSheet } from 'react-native'
-const Inicio = () => {
+const DetallesCliente = () => {
   return (
     <Text>
-      Desde inicio
+      Desde detalle cliente
     </Text>
   )
 }
 
-export default Inicio
+export default DetallesCliente
