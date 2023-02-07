@@ -1,8 +1,8 @@
 import React ,{useState}from 'react'
-import { Text,View,SafeAreaView,StyleSheet} from 'react-native'
-import {TextInput,Headline,Button} from 'react-native-paper'
+import {Text,View,SafeAreaView,StyleSheet} from 'react-native'
+import {TextInput,Headline,Button,Paragraph,Dialog,Portal} from 'react-native-paper'
 import globalStyle from '../styles/global'
-
+import axios from 'axios'
 
 
 
@@ -13,8 +13,42 @@ const NuevoCliente = () => {
  const [telefono,guardarTelefono] =useState('')
  const [correo,guardarCorreo] =useState('')
  const [empresa,guardarEmpresa] =useState('')
+ const [alerta,guardarAlerta] =useState(false)
  
- 
+ //almacena
+const guardarCliente = async()=>{
+
+  //validar
+
+  if(nombre===''||telefono===''||correo===''||empresa===''){
+
+  guardarAlerta(true)
+   return;
+  }
+
+
+  //generar el cliente
+ const cliente={nombre,telefono,empresa,correo};
+
+    
+//guardarcliente en la api
+
+try {
+  
+await axios.post('http://localhost:3000/clientes',cliente)
+
+} catch (error) {
+  console.log(error)
+}
+
+
+
+
+}
+
+
+
+
  
   return (
     <View style={globalStyle.contenedor}>
@@ -58,10 +92,26 @@ const NuevoCliente = () => {
      value={empresa}
      />
 
- <Button icon="pencil-circle" >
+ <Button icon="pencil-circle" mode='contained' onPress={()=>guardarCliente()}>
 
   Guardar Cliente
  </Button>
+
+<Portal>
+
+    <Dialog visible={alerta} onDismiss={()=>guardarAlerta(false)}>
+      <Dialog.Title>Error</Dialog.Title>
+      <Dialog.Content>
+        <Paragraph>Todos los campos son obligatorios</Paragraph>
+      </Dialog.Content>
+<Dialog.Actions>
+  <Button onPress={()=>guardarAlerta(false)}>Ok</Button>
+</Dialog.Actions>
+
+    </Dialog>
+</Portal>
+
+ 
 
     </View>
   )

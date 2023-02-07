@@ -28,6 +28,9 @@ const theme={
 const App = () => {
   return (
     <>
+
+<PaperProvider>
+
       <NavigationContainer>
   <Stack.Navigator initialRouteName='Inicio' 
   screenOptions={{
@@ -59,6 +62,7 @@ headerTitleStyle:{
 
 
       </NavigationContainer>
+      </PaperProvider>
     </>
   )
 }
