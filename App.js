@@ -8,7 +8,7 @@ import NuevoCliente from './views/NuevoCliente';
 import DetallesCliente from './views/DetallesCliente';
 import BarraSuperior from './components/ui/Barra';
 import{DefaultTheme,Provider as PaperProvider}from 'react-native-paper'
-
+import axios from 'axios';
 
 const Stack =createStackNavigator();
 
@@ -55,7 +55,7 @@ headerTitleStyle:{
 
 
      })} />
-     <Stack.Screen name='NuevoCliente' component={NuevoCliente} options={{title:"Nuevo Clientes"}}/>
+     <Stack.Screen name='NuevoCliente' component={NuevoCliente} options={{title:"Nuevo Cliente"}}/>
      <Stack.Screen name='DetalleCliente' component={DetallesCliente} options={{title:"Detalles Clientes"}}/>
 
   </Stack.Navigator>

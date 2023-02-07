@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 
-const NuevoCliente = () => {
+const NuevoCliente = ({navigation}) => {
  
  
  const [nombre,guardarNombre] =useState('')
@@ -28,18 +28,18 @@ const guardarCliente = async()=>{
 
 
   //generar el cliente
- const cliente={nombre,telefono,empresa,correo};
-
+ const clientes={nombre,telefono,empresa,correo};
+  
     
 //guardarcliente en la api
 
 try {
   //para android
  if(Platform.OS=='ios'){
-  await axios.post('http://localhost:3000/clientes',cliente)
+  await axios.post('http://localhost:3000/clientes',clientes)
 
  }else{
-  await axios.post('http://10.0.2.2:3000/clientes',cliente)
+  await axios.post('http://192.168.1.7:3000/clientes',clientes)
 
  }
  
@@ -50,8 +50,16 @@ try {
  
  
 }
+//redireccionar
+navigation.navigate('Inicio')
 
 
+//limpiar form
+guardarNombre('')
+
+guardarTelefono('')
+guardarCorreo('')
+guardarEmpresa('')
 
 
 }
