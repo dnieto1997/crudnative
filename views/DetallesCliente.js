@@ -57,7 +57,7 @@ const DetallesCliente = ({route,navigation}) => {
     
 <Button mode='contained' icon='cancel' 
 onPress={()=>mostrarConfirmacion()}
-style={styles.boton}>Elminar Cliente</Button>
+style={styles.boton}>Eliminar Cliente</Button>
 
     </View>
   )

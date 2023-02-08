@@ -3,7 +3,7 @@ import {Text,View,SafeAreaView,StyleSheet,Platform} from 'react-native'
 import {TextInput,Headline,Button,Paragraph,Dialog,Portal} from 'react-native-paper'
 import globalStyle from '../styles/global'
 import axios from 'axios'
-import { rotationHandlerName } from 'react-native-gesture-handler/lib/typescript/handlers/RotationGestureHandler'
+
 
 
 
@@ -22,9 +22,9 @@ const NuevoCliente = ({navigation,route}) => {
 
 
 useEffect(()=>{
-  const{nombre,telefono,correo,empresa } = route.params.cliente
-if(route.params.cliente){
-  
+ 
+  if(route.params.cliente){
+    const{nombre,telefono,correo,empresa } = route.params.cliente
 
 guardarNombre(nombre)
 guardarCorreo(correo)
@@ -59,10 +59,10 @@ const guardarCliente = async()=>{
 //guardarcliente en la api
 
 
-
+//editar cliente
 if(route.params.cliente){
 const {id} = route.params.cliente
-cliente.id=id
+clientes.id=id
 const url =`http://192.168.1.7:3000/clientes/${id}`;
 
 try {
@@ -77,6 +77,8 @@ try {
 }else{
 
   try {
+
+    //agregar informacion en el json
     //para android
    if(Platform.OS=='ios'){
     await axios.post('http://localhost:3000/clientes',clientes)

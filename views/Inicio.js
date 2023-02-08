@@ -74,7 +74,7 @@ const [consultarAPI,guardarconsultarAPI] =useState(true);
       <FAB
       icon="plus"  
       style={globalStyle.fab}  
-      onPress={()=>navigation.navigate("NuevoCliente")}  
+      onPress={()=>navigation.navigate("NuevoCliente",{guardarconsultarAPI})}  
       />
        
     </View>
