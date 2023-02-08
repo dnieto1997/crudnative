@@ -1,20 +1,45 @@
-import React ,{useState}from 'react'
+import React ,{useState,useEffect}from 'react'
 import {Text,View,SafeAreaView,StyleSheet,Platform} from 'react-native'
 import {TextInput,Headline,Button,Paragraph,Dialog,Portal} from 'react-native-paper'
 import globalStyle from '../styles/global'
 import axios from 'axios'
+import { rotationHandlerName } from 'react-native-gesture-handler/lib/typescript/handlers/RotationGestureHandler'
 
 
 
-const NuevoCliente = ({navigation}) => {
+const NuevoCliente = ({navigation,route}) => {
  
- 
+
+
+
  const [nombre,guardarNombre] =useState('')
  const [telefono,guardarTelefono] =useState('')
  const [correo,guardarCorreo] =useState('')
  const [empresa,guardarEmpresa] =useState('')
  const [alerta,guardarAlerta] =useState(false)
  
+//detectar si se esta editando
+
+
+useEffect(()=>{
+  const{nombre,telefono,correo,empresa } = route.params.cliente
+if(route.params.cliente){
+  
+
+guardarNombre(nombre)
+guardarCorreo(correo)
+guardarEmpresa(empresa)
+guardarTelefono(telefono)
+
+
+}
+
+
+},[])
+
+
+
+
  //almacena
 const guardarCliente = async()=>{
 
@@ -33,23 +58,45 @@ const guardarCliente = async()=>{
     
 //guardarcliente en la api
 
+
+
+if(route.params.cliente){
+const {id} = route.params.cliente
+cliente.id=id
+const url =`http://192.168.1.7:3000/clientes/${id}`;
+
 try {
-  //para android
- if(Platform.OS=='ios'){
-  await axios.post('http://localhost:3000/clientes',clientes)
-
- }else{
-  await axios.post('http://192.168.1.7:3000/clientes',clientes)
-
- }
  
-  
-
+  await axios.put(url,clientes)
+  navigation.navigate('Inicio')
 } catch (error) {
   console.log(error)
- 
- 
 }
+
+
+}else{
+
+  try {
+    //para android
+   if(Platform.OS=='ios'){
+    await axios.post('http://localhost:3000/clientes',clientes)
+  
+   }else{
+    await axios.post('http://192.168.1.7:3000/clientes',clientes)
+  
+   }
+   
+    
+  
+  } catch (error) {
+    console.log(error)
+   
+   
+  }
+
+}
+
+
 //redireccionar
 navigation.navigate('Inicio')
 
@@ -60,6 +107,8 @@ guardarNombre('')
 guardarTelefono('')
 guardarCorreo('')
 guardarEmpresa('')
+
+route.params.guardarconsultarAPI(true);
 
 
 }
@@ -80,6 +129,7 @@ guardarEmpresa('')
      style={style.input}
      onChangeText={texto => guardarNombre(texto)}
      value={nombre}
+    
      
      />
 
@@ -91,6 +141,7 @@ guardarEmpresa('')
      style={style.input}
      onChangeText={texto => guardarTelefono(texto)}
      value={telefono}
+     keyboardType='phone-pad'
      />
 
 <TextInput
@@ -99,6 +150,7 @@ guardarEmpresa('')
      style={style.input}
      onChangeText={texto => guardarCorreo(texto)}
      value={correo}
+     keyboardType='email-address'
      />
  
  

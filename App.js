@@ -49,14 +49,14 @@ headerTitleStyle:{
      <Stack.Screen name='Inicio' component={Inicio} options ={({navigation,route})=>({
    
    headerTitleAlign:'center',
-   headerLeft:(props)=> <BarraSuperior {...props} 
-   navigation={navigation}
-   route={route}/>
+   //headerLeft:(props)=> <BarraSuperior {...props} 
+   //navigation={navigation}
+  // route={route}/>
 
 
      })} />
      <Stack.Screen name='NuevoCliente' component={NuevoCliente} options={{title:"Nuevo Cliente"}}/>
-     <Stack.Screen name='DetalleCliente' component={DetallesCliente} options={{title:"Detalles Clientes"}}/>
+     <Stack.Screen name='DetallesCliente' component={DetallesCliente} options={{title:"Detalles Clientes"}}/>
 
   </Stack.Navigator>
 
