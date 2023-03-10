@@ -8,7 +8,7 @@ import NuevoCliente from './views/NuevoCliente';
 import DetallesCliente from './views/DetallesCliente';
 import BarraSuperior from './components/ui/Barra';
 import{DefaultTheme,Provider as PaperProvider}from 'react-native-paper'
-import axios from 'axios';
+
 
 const Stack =createStackNavigator();
 
